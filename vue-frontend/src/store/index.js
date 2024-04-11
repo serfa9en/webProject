@@ -8,10 +8,11 @@ export default {
         favourites: '#FFFFFF',
         busket: '#FFFFFF',
       },
-      conteiner: {
-        conteinerCatalog: null
+      container: {
+        containerCatalog: null
       },
-      userId: null
+      userId: null,
+      busketStatus: true
     },
     actions: {
         setStep: ({ commit }, payload) => commit('SET_STEP', payload),
@@ -19,8 +20,9 @@ export default {
         setCatalog: ({ commit }, payload) => commit('SET_CATALOG', payload),
         setFavourites: ({ commit }, payload) => commit('SET_FAVOURITES', payload),
         setBusket: ({ commit }, payload) => commit('SET_BUSKET', payload),
-        setConteinerCatalog: ({ commit }, payload) => commit('SET_CONTEINER_CATALOG', payload),
-        setUserId: ({ commit }, payload) => commit('SET_USER_ID', payload)
+        setContainerCatalog: ({ commit }, payload) => commit('SET_CONTAINER_CATALOG', payload),
+        setUserId: ({ commit }, payload) => commit('SET_USER_ID', payload),
+        setBusketStatus: ({ commit }, payload) => commit('SET_BUSKET_STATUS', payload)
     },
     mutations: {
         SET_STEP: (state, payload) => { state.step = payload.data },
@@ -30,8 +32,9 @@ export default {
         SET_BUSKET: (state, payload) => { state.color.busket = payload.data },
         SET_HISTORY_COLOR: (state, payload) => { state.color.historyColor = payload.data },
         SET_PROFILE_COLOR: (state, payload) => { state.color.profileColor = payload.data },
-        SET_CONTEINER_CATALOG: (state, payload) => { state.conteiner.conteinerCatalog = payload.data },
-        SET_USER_ID: (state, payload) => { state.userId = payload.data }
+        SET_CONTAINER_CATALOG: (state, payload) => { state.container.containerCatalog = payload.data },
+        SET_USER_ID: (state, payload) => { state.userId = payload.data },
+        SET_BUSKET_STATUS: (state, payload) => { state.busketStatus = payload.data }
     },
     getters: {
         getStep: state => state.step,
@@ -41,7 +44,8 @@ export default {
         getBusket: state => state.color.busket,
         getHistoryColor: state => state.color.historyColor,
         getProfileColor: state => state.color.profileColor,
-        getConteinerCatalog: state => state.conteiner.conteinerCatalog,
-        getUserId: state => state.userId
+        getContainerCatalog: state => state.container.containerCatalog,
+        getUserId: state => state.userId,
+        getBusketStatus: state => state.busketStatus
     }
 }

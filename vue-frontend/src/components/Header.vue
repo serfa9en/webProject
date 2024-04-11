@@ -28,7 +28,7 @@
             <img src="../assets/icons/location.jpg">
             <p><u>{{ location }}</u></p>
         </div>
-        <div class="button log">
+        <div class="log">
             <p><u>Log In</u></p>
         </div>
     </div>
@@ -156,6 +156,16 @@ export default {
 }
 
 .log {
+    width: 200px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    bottom: 0;
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    color: #2000A0;
     position: absolute;
     right: 0;
 }

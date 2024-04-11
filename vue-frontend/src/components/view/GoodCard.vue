@@ -2,9 +2,10 @@
     <div class="settings">
         <img :src="imgItem">
         <h1 class="text">{{ name }}</h1>
-        <div class="conteiner">
+        <div class="container">
             <h1 class="cost">Цена</h1>
-            <div class="button">В корзину</div>
+            <div v-if="this.$store.getters.getBusketStatus" class="button" v-on:click="toBusket(`${{ id }}`)">В корзину</div>
+            <div v-if="this.$store.getters.getBusketStatus===false" class="button btnBusket" v-on:click="toBusketDel(`${{ id }}`)">Удалить</div>
         </div>
     </div>
 </template>
@@ -19,6 +20,16 @@ export default {
     computed: {
         imgItem () {
             return require(`../../assets/goods/${ this.id }.jpg`)
+        }
+    },
+    methods: {
+        toBusket: function (val) {
+            console.log(val)
+            this.$store.dispatch('setBusketStatus', { data: false }) 
+        },
+        toBusketDel: function (val) {
+            console.log(val)
+            this.$store.dispatch('setBusketStatus', { data: true }) 
         }
     }
 }
@@ -45,7 +56,7 @@ img {
     margin: 20px;
 }
 
-.conteiner {
+.container {
     width: 100%;
     height: auto;
     display: flex;
@@ -84,4 +95,22 @@ img {
     background: #e3daff;
     cursor: pointer;
 }
+
+.btnBusket {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    background: #ffffff;
+    border: 3px solid #2000A0;
+    font-size: 16px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin: 30px;
+}
+
 </style>
