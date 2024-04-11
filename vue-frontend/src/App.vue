@@ -14,8 +14,26 @@ export default {
   components: {
     Header,
     Content
+  },
+  methods: {
+    
   }
 }
+
+window.onload = function() {
+  //alert(document.cookie.split('=')[1])
+  var city;
+  if (document.cookie.split('=')[0] === 'city') {
+    if (document.cookie.split('=')[1] === 'null') {
+      document.cookie = "city=Не определено"
+    }
+  } else {
+    city = prompt('Где вы находитесь?');
+    document.cookie = "city=" + city 
+  }
+}
+location.reload;
+
 </script>
 
 <style>

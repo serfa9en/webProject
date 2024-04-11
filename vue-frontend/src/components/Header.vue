@@ -24,8 +24,9 @@
             v-on:click="setStep(3)">
             <p>Корзина</p>
         </div>
-        <div class="cook">
-            <p>Город</p>
+        <div class="cook" v-on:click="setLoction()">
+            <img src="../assets/icons/location.jpg">
+            <p><u>{{ location }}</u></p>
         </div>
         <div class="button log">
             <p><u>Log In</u></p>
@@ -36,21 +37,71 @@
 <script>
 export default {
   name: 'Header',
+  data () {
+    return {
+        location: null
+    }
+  },
   computed: {
     showComponent () {
         if (this.$store.getters.getHeader === true) {
+            // console.log(document.getElementById("location"))
             this.setElem()
         }
         return this.$store.getters.getHeader
     }
   },
   methods: {
+    showPosition(position) {
+
+        /*
+        var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address";
+        var token = "34ae466ece5958ebd8fec42454bd71d4537465a2";
+    
+        var query = { lat: position.coords.latitude, lon: position.coords.longitude };
+
+        var options = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": "Token " + token
+            },
+            body: JSON.stringify(query)
+        }
+
+        fetch(url, options)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log("error", error));
+*/
+
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        document.getElementById("location").innerHTML = lat + " - " + lon;
+        //document.cookie = position.coords.latitude + " - " + position.coords.longitude
+    },
     setElem: function () {
+        this.location = document.cookie.split('=')[1]
+        /*
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.showPosition);
+        } else {
+            document.getElementById("location").innerHTML = "Геолокация не поддерживается.";
+        }
+        */
+
         this.$store.dispatch('setCatalog', { data: '#D1C1FF' }) 
         this.$store.dispatch('setFavourites', { data: '#FFFFFF' }) 
         this.$store.dispatch('setBusket', { data: '#FFFFFF' }) 
         this.$store.dispatch('setStep', { data: 'catalog' }) 
 
+    },
+    setLoction: function () {
+        var city = prompt('Где вы находитесь?');
+        document.cookie = "city=" + city
+        this.location = city
     },
     setStep: function (val) {
         switch (val) {
@@ -127,11 +178,11 @@ export default {
 }
 
 .cook {
-    width: 200px;
+    width: 250px;
     height: 100%;
-    font-size: 24px;
+    font-size: 16px;
     cursor: pointer;
-    color: #2000A0;
+    color: #000000;
     text-align: center;
     justify-content: center;
     bottom: 0;

@@ -3,20 +3,17 @@ package com.project.springboot.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
-
 @Data
 @Entity
 @Table(name = "good")
 public class Good {
 
     @Id
-    private long Id;
+    private long id;
     private String name;
 
-    @ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "category", joinColumns = @JoinColumn(name = "id"))
-    private long category;
+    //@ManyToOne
+    //private long category;
 
     /*
     @ElementCollection(targetClass = Category.class, fetch = FetchType.EAGER)
@@ -25,4 +22,7 @@ public class Good {
     private Set<Category> category;
 
      */
+
+
+
 }

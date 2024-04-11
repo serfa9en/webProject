@@ -1,9 +1,8 @@
 package com.project.springboot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CollectionId;
 
 @Data
 @Entity
@@ -13,4 +12,5 @@ public class Category {
     @Id
     private long id;
     private String name;
+
 }

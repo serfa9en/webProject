@@ -1,9 +1,7 @@
 package com.project.springboot.controller;
 
-import com.project.springboot.model.Category;
 import com.project.springboot.model.Good;
 import com.project.springboot.repository.GoodRepository;
-import jakarta.persistence.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +16,18 @@ public class GoodController {
     @Autowired
     private GoodRepository goodRepository;
 
+    /*
     @GetMapping("/goods")
     public List<Good> fetchGoods() {
-        return goodRepository.findAllCategories();
+        List<Category> cats = categoryRepository.findById(1);
+        return goodRepository.findByCategory(cats);
+    }
+
+     */
+
+    @GetMapping("/goods")
+    public List<Good> fetchGoods() {
+        return goodRepository.findAll();
     }
 
 }
